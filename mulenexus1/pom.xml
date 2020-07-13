@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
-	<artifactId>mulenexus</artifactId>
+	<artifactId>mulenexus1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
-	<name>mulenexus</name>
+	<name>mulenexus1</name>
 
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,6 +33,26 @@
 				<configuration>
 				</configuration>
 			</plugin>
+			<plugin>
+            <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.6</version>
+                 <extensions>true</extensions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:9081/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
+                <executions>
+                       <execution>
+                         <id>default-deploy</id>
+                         <phase>deploy</phase>
+                         <goals>
+                           <goal>deploy</goal>
+                         </goals>
+                       </execution>
+                </executions>   
+            </plugin>
 		</plugins>
 	</build>
 
@@ -76,16 +96,11 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>Releases</name>
-      <url>http://localhost:9081/repository/maven-releases</url>
-    </repository>
+<distributionManagement>
     <snapshotRepository>
-      <id>nexus</id>
-      <name>Snapshot</name>
-      <url>http://localhost:9081/repository/maven-snapshots</url>
+      <id>mulerelease</id>
+      <name>mulerelease</name>
+      <url>http://localhost:9081/repository/mulerelease/</url>
     </snapshotRepository>
   </distributionManagement>
 
